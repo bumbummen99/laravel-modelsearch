@@ -1,0 +1,27 @@
+{
+    "name": "skyraptor/modelsearch",
+    "version": "dev-master",
+    "authors": [
+        {
+            "name": "Patrick Henninger",
+            "email": "privat@skyraptor.eu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ModelSearch\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "5.7.*",
+        "illuminate/database": "5.7.*",
+        "illuminate/http ": "5.7.*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ModelSearch\\ModelSearchServiceProvider"
+            ]
+        }
+    }
+ }
