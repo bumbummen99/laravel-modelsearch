@@ -9,7 +9,7 @@ abstract class Search
 {
     protected $modelName;
     protected $filters = [];
-    protected $data;
+    protected $builder;
     protected $requestFilterPrefix;
 
 
@@ -32,7 +32,7 @@ abstract class Search
             
             $filterClass = $this->getFilterFQCN($filterName);
             if (class_exists($filterClass)) {
-                $this->data = $filterClass::apply($this->data, $value);
+                $this->builder = $filterClass::apply($this->builder, $value);
             }
         }
     }
@@ -48,7 +48,7 @@ abstract class Search
         {
             $filterClass = $this->getFilterFQCN('SortBy');
             if (class_exists($filterClass)) {
-                $this->data = $filterClass::apply($this->data, $this->filters['SortBy']);
+                $this->builder = $filterClass::apply($this->builder, $this->filters['SortBy']);
             }
         }
     }

@@ -3,13 +3,12 @@
 
 namespace ModelSearch;
 
-use Illuminate\Database\Eloquent\Model;
-
 use ModelSearch\Abstracts\Search;
 
 class ModelSearch extends Search
 {
     private $model;
+    private $modelFQCN;
 
     /**
      * Process applied filters and get result.
@@ -18,11 +17,15 @@ class ModelSearch extends Search
      * 
      * @return Illuminate\Support\Collection
      */
-    public function __construct( Model $model )
+    public function __construct( string $modelFQCN )
     {
         parent::__construct();
-        $this->model = $model;
-        $this->modelName = ( new \ReflectionClass($this->model) )->getShortName();
+
+        $this->modelFQCN = $modelFQCN;
+        if (!class_exists($this->modelFQCN))
+            throw new \Exception("The provided model FQCN class does not exist.");
+
+        $this->modelName = ( new \ReflectionClass($this->modelFQCN) )->getShortName();
     }
 
     /**
@@ -32,11 +35,11 @@ class ModelSearch extends Search
      */
     public function result()
     {
-        $this->data = $this->model->newQuery();
+        $this->builder = (new $this->modelFQCN)->newQuery();
 
         $this->filterPass();
         $this->sortPass();
 
-        return $this->data->get();
+        return $this->builder->get();
     }
 }
