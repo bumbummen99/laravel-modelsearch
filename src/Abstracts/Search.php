@@ -120,7 +120,7 @@ abstract class Search
     public function addRequestFilters( Request $request )
     {
         foreach ($request->all() as $filterNameRaw => $value) {
-            if ( substr( $filterNameRaw, 0, 2 ) === config('modelsearch.requestFilterPrefix') )
+            if ( substr( $filterNameRaw, 0, 2 ) === $this->requestFilterPrefix )
             {
                 $filterName = substr( $filterNameRaw, 2 );
                 $this->addFilter( $filterName, $value );
