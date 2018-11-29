@@ -10,61 +10,12 @@ abstract class Search
     protected $modelName;
     protected $filters = [];
     protected $data;
+    protected $requestFilterPrefix;
 
-    /**
-     * Runs every filter in the array on the Collection.
-     * 
-     * @return Illuminate\Support\Collection
-     */
-    public abstract function result();
 
-    /**
-     * Runs every filter in the array on the Collection.
-     * 
-     * @return void
-     */
-    public function addRequestFilters( Request $request )
+    function __construct()
     {
-        foreach ($request->all() as $filterNameRaw => $value) {
-            if ( substr( $filterNameRaw, 0, 2 ) === config('modelsearch.requestFilterPrefix') )
-            {
-                $filterName = substr( $filterNameRaw, 2 );
-                $this->addFilter( $filterName, $value );
-            }
-        }
-    }
-
-    /**
-     * Runs every filter in the array on the Collection.
-     * 
-     * @return void
-     */
-    public function addFilters( array $filters = [] )
-    {
-        foreach( $filters as $filterName => $value )
-        {
-            $this->addFilter( $filterName, $value );
-        }
-    }
-
-    /**
-     * Runs every filter in the array on the Collection.
-     * 
-     * @return void
-     */
-    public function addFilter( string $filterName, $value )
-    {
-        $this->filters[$filterName] = $value;
-    }
-
-    /**
-     * Checks if the given filter si registered
-     * 
-     * @return boolean
-     */
-    public function hasFilter( string $filterName )
-    {
-        return array_key_exists( $filterName, $this->filters );
+        $this->$requestFilterPrefix = config('modelsearch.requestFilterPrefix');
     }
 
     /**
@@ -102,9 +53,80 @@ abstract class Search
         }
     }
 
-    /*
-     * Helpers
+    /*--------------------------------------------------------------------------------------*\
+    |* Interface *|
+    \*--------------------------------------------------------------------------------------*/
+
+    /**
+     * Runs the search with every filter returning a Collection
+     * 
+     * @return Illuminate\Support\Collection
      */
+    public abstract function result();
+
+    /**
+     * Adds every filter in the array to the Search.
+     * 
+     * @return void
+     */
+    public function addFilters( array $filters = [] )
+    {
+        foreach( $filters as $filterName => $value )
+        {
+            $this->addFilter( $filterName, $value );
+        }
+    }
+
+    /**
+     * Adds the provided filter to the Search.
+     * 
+     * @return void
+     */
+    public function addFilter( string $filterName, $value )
+    {
+        $this->filters[$filterName] = $value;
+    }
+
+    /**
+     * Checks if the given filter is registered.
+     * 
+     * @return boolean
+     */
+    public function hasFilter( string $filterName )
+    {
+        return array_key_exists( $filterName, $this->filters );
+    }
+
+    /**
+     * Changes the request filter prefix.
+     * 
+     * @return boolean
+     */
+    public function setRequestFilterPrefix( string $requestFilterPrefix )
+    {
+        $this->requestFilterPrefix = $requestFilterPrefix;
+    }
+
+    /*--------------------------------------------------------------------------------------*\
+    |* Helpers *|
+    \*--------------------------------------------------------------------------------------*/
+
+    /**
+     * Runs every filter in the request parameters
+     * startign with the requestFilterPrefix to the Search.
+     * 
+     * @return void
+     */
+    public function addRequestFilters( Request $request )
+    {
+        foreach ($request->all() as $filterNameRaw => $value) {
+            if ( substr( $filterNameRaw, 0, 2 ) === config('modelsearch.requestFilterPrefix') )
+            {
+                $filterName = substr( $filterNameRaw, 2 );
+                $this->addFilter( $filterName, $value );
+            }
+        }
+    }
 
     /**
      * Returns the FQCN of the filter based on filter name.

@@ -20,6 +20,7 @@ class ModelSearch extends Search
      */
     public function __construct( Model $model )
     {
+        parent::__construct();
         $this->model = $model;
         $this->modelName = ( new \ReflectionClass($this->model) )->getShortName();
     }
