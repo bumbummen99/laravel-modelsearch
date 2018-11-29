@@ -15,7 +15,7 @@ abstract class Search
 
     function __construct()
     {
-        $this->$requestFilterPrefix = config('modelsearch.requestFilterPrefix');
+        $this->requestFilterPrefix = config('modelsearch.requestFilterPrefix');
     }
 
     /**
