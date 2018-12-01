@@ -1,6 +1,6 @@
 {
     "name": "skyraptor/modelsearch",
-    "version": "0.2.3",
+    "version": "0.2.2",
     "authors": [
         {
             "name": "Patrick Henninger",
@@ -22,4 +22,4 @@
             ]
         }
     }
- }
+}
