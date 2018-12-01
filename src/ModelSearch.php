@@ -35,7 +35,7 @@ class ModelSearch extends Search
      */
     public function result()
     {
-        $this->builder = (new $this->modelFQCN)->newQuery();
+        $this->builder = $this->modelFQCN::newQuery();
 
         $this->filterPass();
         $this->sortPass();

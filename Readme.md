@@ -59,7 +59,7 @@ class HasId implements Filter
 
  Always remember to apply filters in the appropiate order.
  ```
- $search = new ModelSearch( new User() );
+ $search = new ModelSearch( User::class );
  $search->addRequestFilters( $request );
  $result = $search->result();
  ```
@@ -77,7 +77,7 @@ namespace ModelSearch\ModelSearch;
 public function someController( Request $request ) {
     ...
 
-    $search = new ModelSearch( new User() );
+    $search = new ModelSearch( User::class );
     $search->addFilters([
         'HasId' => 1,
         'HasLastName' => 'Doe'
