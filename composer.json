@@ -1,10 +1,12 @@
 {
     "name": "skyraptor/modelsearch",
-    "version": "0.2.3",
+    "version": "0.2.3.1",
+    "license": "MIT",
     "authors": [
         {
             "name": "Patrick Henninger",
-            "email": "privat@skyraptor.eu"
+            "email": "privat@skyraptor.eu",
+            "homepage": "https://skyraptor.eu"
         }
     ],
     "autoload": {
