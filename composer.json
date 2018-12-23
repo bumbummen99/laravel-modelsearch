@@ -1,7 +1,7 @@
 {
     "name": "skyraptor/modelsearch",
-    "version": "0.2.3.1",
     "license": "MIT",
+    "keywords": ["modelsearch", "search", "query"],
     "authors": [
         {
             "name": "Patrick Henninger",
@@ -14,8 +14,17 @@
             "ModelSearch\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SkyRaptor\\Tests\\ModelSearch\\": "tests/"
+        }
+    },
     "require": {
         "laravel/framework": "5.7.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0|~6.0|~7.0",
+        "orchestra/testbench": "~3.1"
     },
     "extra": {
         "laravel": {
