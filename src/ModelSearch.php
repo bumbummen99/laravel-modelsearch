@@ -4,6 +4,7 @@
 namespace ModelSearch;
 
 use ModelSearch\Abstracts\Search;
+use ModelSearch\Exceptions\InvalidModelFQCNException;
 
 class ModelSearch extends Search
 {
@@ -23,7 +24,7 @@ class ModelSearch extends Search
 
         $this->modelFQCN = $modelFQCN;
         if (!class_exists($this->modelFQCN))
-            throw new \Exception("The provided model FQCN class does not exist.");
+            throw new InvalidModelFQCNException("The provided model FQCN class does not exist.");
 
         $this->modelName = ( new \ReflectionClass($this->modelFQCN) )->getShortName();
     }

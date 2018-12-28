@@ -120,9 +120,9 @@ abstract class Search
     public function addRequestFilters( Request $request )
     {
         foreach ($request->all() as $filterNameRaw => $value) {
-            if ( substr( $filterNameRaw, 0, 2 ) === $this->requestFilterPrefix )
+            if ( substr( $filterNameRaw, 0, strlen($this->requestFilterPrefix) ) === $this->requestFilterPrefix )
             {
-                $filterName = substr( $filterNameRaw, 2 );
+                $filterName = substr( $filterNameRaw, strlen($this->requestFilterPrefix) );
                 $this->addFilter( $filterName, $value );
             }
         }

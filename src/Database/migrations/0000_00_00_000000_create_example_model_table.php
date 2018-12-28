@@ -11,6 +11,7 @@ class CreateExampleModelTable extends Migration
     {
         Schema::create('examplemodel', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
