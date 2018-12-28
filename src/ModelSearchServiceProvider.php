@@ -22,7 +22,7 @@ class ModelSearchServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/modelsearch.php' => config_path('modelsearch.php'),
+            __DIR__.'/Config/modelsearch.php' => config_path('modelsearch.php'),
         ]);
     }
 }

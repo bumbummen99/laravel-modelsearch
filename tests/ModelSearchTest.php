@@ -50,7 +50,7 @@ class CartTest extends TestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../src/Database/migrations');
 
         foreach(range(1, 10) as $index) {
             $exampleModel = new ExampleModel();
