@@ -154,6 +154,25 @@ class CartTest extends TestCase
         }
     }
 
+    /** @test */
+    public function it_can_change_request_filter_prefix_during_runtime()
+    {
+        $request = new \Illuminate\Http\Request();
+        $request->merge([
+            'f_hasid' => 1
+        ]);
+
+        $search = new ModelSearch( ExampleModel::class );
+        $search->setRequestFilterPrefix('f_');
+        $search->addRequestFilters( $request );
+        $result = $search->result();
+
+        $this->assertEquals($result->count(), 1);
+        foreach( $result as $exampleModel ) {
+            $this->assertEquals(1, $exampleModel->id);
+        }
+    }
+
     /**
      * @test
      * @expectedException \ModelSearch\Exceptions\InvalidModelFQCNException
