@@ -16,6 +16,11 @@
     <filter>
         <whitelist>
             <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix=".php">./src/Filters/</directory>
+                <directory suffix=".php">./src/Models/</directory>
+                <directory suffix=".php">./src/Database/</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
