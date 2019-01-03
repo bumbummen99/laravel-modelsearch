@@ -7,32 +7,32 @@ assignees: ''
 
 ---
 
-**Describe the bug**
+**Describe the bug**  
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+**To Reproduce**  
 The Bug has to be reproduceable. Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+**Expected behavior**  
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
+**Screenshots**  
 If applicable, add screenshots to help explain your problem.
 
-**Environment:**
+**Environment:**  
  - PHP version: [e.g. 7.2.13]
  - Laravel version [e.g. 5.7]
  - Package version [e.g. 1.0]
 
-**Did you modify the package?:**
-- [ X ] No
+**Did you modify the package?:**  
+- [X] No
 
-**Summary of your modifications to the package:**
+**Summary of your modifications to the package:**  
 Add any modifcation to the original source code of the package here.
 
-**Additional context**
+**Additional context**  
 Add any other context about the problem here.
