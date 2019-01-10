@@ -9,7 +9,7 @@ use ModelSearch\ModelSearch;
 
 use ModelSearch\Models\ExampleModel;
 
-class CartTest extends TestCase
+class ModelSearchTest extends TestCase
 {
     /**
      * Set the package service provider.
