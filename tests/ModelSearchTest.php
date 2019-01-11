@@ -59,6 +59,14 @@ class ModelSearchTest extends TestCase
             $exampleModel->name = 'Test';
             $exampleModel->save();
         }
+
+        foreach(range(1, 4) as $index) {
+            $exampleModel = new ExampleModel();
+            $exampleModel->name = 'Labels';
+            $exampleModel->label_one = true;
+            $exampleModel->label_two = true;
+            $exampleModel->save();
+        }
     }
 
     /** @test */
@@ -91,8 +99,6 @@ class ModelSearchTest extends TestCase
         $search = new ModelSearch( ExampleModel::class );
         $search->addFilter('SortBy', 'id');
         $result = $search->result();
-
-        $this->assertEquals($result->count(), 10);
         
         $predictedIndex = 1;
         foreach( $result as $exampleModel ) {
@@ -107,10 +113,8 @@ class ModelSearchTest extends TestCase
         $search = new ModelSearch( ExampleModel::class );
         $search->addFilter('SortBy', 'idDesc');
         $result = $search->result();
-
-        $this->assertEquals($result->count(), 10);
         
-        $predictedIndex = 10;
+        $predictedIndex = 14;
         foreach( $result as $exampleModel ) {
             $this->assertEquals($exampleModel->id, $predictedIndex);
             $predictedIndex--; //decrease index
@@ -151,6 +155,33 @@ class ModelSearchTest extends TestCase
         $this->assertEquals($result->count(), 1);
         foreach( $result as $exampleModel ) {
             $this->assertEquals(1, $exampleModel->id);
+        }
+    }
+
+    /** @test */
+    public function it_can_add_filters_from_request_array_value()
+    {
+        $request = new \Illuminate\Http\Request();
+        $request->merge([
+            'filter_has_label' => [
+                'one',
+                'two'
+            ],
+        ]);
+
+        $this->assertEquals(true, $request->has('filter_has_label'));
+        $filterValues = $request->get('filter_has_label');
+        $this->assertEquals(true, in_array('one', $filterValues) );
+        $this->assertEquals(true, in_array('two', $filterValues) );
+
+        $search = new ModelSearch( ExampleModel::class );
+        $search->addRequestFilters( $request );
+        $result = $search->result();
+
+        $this->assertEquals($result->count(), 4);
+        foreach( $result as $exampleModel ) {
+            $this->assertEquals(true, $exampleModel->label_one);
+            $this->assertEquals(true, $exampleModel->label_two);
         }
     }
 

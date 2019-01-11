@@ -11,7 +11,11 @@ class CreateExampleModelTable extends Migration
     {
         Schema::create('examplemodel', function (Blueprint $table) {
             $table->increments('id');
+            
             $table->string('name');
+            $table->boolean('label_one')->default(false);
+            $table->boolean('label_two')->default(false);
+
             $table->timestamps();
         });
     }

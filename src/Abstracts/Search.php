@@ -123,7 +123,11 @@ abstract class Search
             if ( substr( $filterNameRaw, 0, strlen($this->requestFilterPrefix) ) === $this->requestFilterPrefix )
             {
                 $filterName = substr( $filterNameRaw, strlen($this->requestFilterPrefix) );
-                $this->addFilter( $filterName, $value );
+                if (is_array($value)) 
+                    foreach($value as $v)
+                        $this->addFilter( $filterName, $v );
+                else
+                    $this->addFilter( $filterName, $value );
             }
         }
     }
