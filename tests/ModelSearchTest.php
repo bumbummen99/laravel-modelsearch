@@ -1,13 +1,11 @@
 <?php
+
 namespace SkyRaptor\Tests\ModelSearch;
 
-use PHPUnit\Framework\Assert;
-use Orchestra\Testbench\TestCase;
-
-use ModelSearch\ModelSearchServiceProvider;
-use ModelSearch\ModelSearch;
-
 use ModelSearch\Models\ExampleModel;
+use ModelSearch\ModelSearch;
+use ModelSearch\ModelSearchServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class ModelSearchTest extends TestCase
 {
@@ -15,6 +13,7 @@ class ModelSearchTest extends TestCase
      * Set the package service provider.
      *
      * @param \Illuminate\Foundation\Application $app
+     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -25,7 +24,8 @@ class ModelSearchTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -52,15 +52,15 @@ class ModelSearchTest extends TestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../src/Database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../src/Database/migrations');
 
-        foreach(range(1, 10) as $index) {
+        foreach (range(1, 10) as $index) {
             $exampleModel = new ExampleModel();
             $exampleModel->name = 'Test';
             $exampleModel->save();
         }
 
-        foreach(range(1, 4) as $index) {
+        foreach (range(1, 4) as $index) {
             $exampleModel = new ExampleModel();
             $exampleModel->name = 'Labels';
             $exampleModel->label_one = true;
@@ -79,16 +79,15 @@ class ModelSearchTest extends TestCase
         $this->assertEquals('f_', $this->app['config']->get('modelsearch.requestFilterPrefix'));
     }
 
-
     /** @test */
     public function it_can_find_a_model_by_id()
     {
-        $search = new ModelSearch( ExampleModel::class );
+        $search = new ModelSearch(ExampleModel::class);
         $search->addFilter('HasId', 1);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 1);
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals($exampleModel->id, 1);
         }
     }
@@ -96,12 +95,12 @@ class ModelSearchTest extends TestCase
     /** @test */
     public function it_can_sort_models_with_a_special_filter()
     {
-        $search = new ModelSearch( ExampleModel::class );
+        $search = new ModelSearch(ExampleModel::class);
         $search->addFilter('SortBy', 'id');
         $result = $search->result();
-        
+
         $predictedIndex = 1;
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals($exampleModel->id, $predictedIndex);
             $predictedIndex++; //increase index
         }
@@ -110,12 +109,12 @@ class ModelSearchTest extends TestCase
     /** @test */
     public function it_can_sort_models_with_a_special_filter_dec()
     {
-        $search = new ModelSearch( ExampleModel::class );
+        $search = new ModelSearch(ExampleModel::class);
         $search->addFilter('SortBy', 'idDesc');
         $result = $search->result();
-        
+
         $predictedIndex = 14;
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals($exampleModel->id, $predictedIndex);
             $predictedIndex--; //decrease index
         }
@@ -124,15 +123,15 @@ class ModelSearchTest extends TestCase
     /** @test */
     public function it_can_add_filters_from_array()
     {
-        $search = new ModelSearch( ExampleModel::class );
+        $search = new ModelSearch(ExampleModel::class);
         $search->addFilters([
             'HasName' => 'Test',
-            'SortBy' => 'idDesc'
+            'SortBy'  => 'idDesc',
             ]);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 10);
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals('Test', $exampleModel->name);
         }
     }
@@ -142,18 +141,18 @@ class ModelSearchTest extends TestCase
     {
         $request = new \Illuminate\Http\Request();
         $request->merge([
-            'filter_hasid' => 1
+            'filter_hasid' => 1,
         ]);
 
         $this->assertEquals(true, $request->has('filter_hasid'));
         $this->assertEquals(1, $request->get('filter_hasid'));
 
-        $search = new ModelSearch( ExampleModel::class );
-        $search->addRequestFilters( $request );
+        $search = new ModelSearch(ExampleModel::class);
+        $search->addRequestFilters($request);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 1);
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals(1, $exampleModel->id);
         }
     }
@@ -165,21 +164,21 @@ class ModelSearchTest extends TestCase
         $request->merge([
             'filter_has_label' => [
                 'one',
-                'two'
+                'two',
             ],
         ]);
 
         $this->assertEquals(true, $request->has('filter_has_label'));
         $filterValues = $request->get('filter_has_label');
-        $this->assertEquals(true, in_array('one', $filterValues) );
-        $this->assertEquals(true, in_array('two', $filterValues) );
+        $this->assertEquals(true, in_array('one', $filterValues));
+        $this->assertEquals(true, in_array('two', $filterValues));
 
-        $search = new ModelSearch( ExampleModel::class );
-        $search->addRequestFilters( $request );
+        $search = new ModelSearch(ExampleModel::class);
+        $search->addRequestFilters($request);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 4);
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals(true, $exampleModel->label_one);
             $this->assertEquals(true, $exampleModel->label_two);
         }
@@ -190,16 +189,16 @@ class ModelSearchTest extends TestCase
     {
         $request = new \Illuminate\Http\Request();
         $request->merge([
-            'f_hasid' => 1
+            'f_hasid' => 1,
         ]);
 
-        $search = new ModelSearch( ExampleModel::class );
+        $search = new ModelSearch(ExampleModel::class);
         $search->setRequestFilterPrefix('f_');
-        $search->addRequestFilters( $request );
+        $search->addRequestFilters($request);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 1);
-        foreach( $result as $exampleModel ) {
+        foreach ($result as $exampleModel) {
             $this->assertEquals(1, $exampleModel->id);
         }
     }
@@ -210,6 +209,6 @@ class ModelSearchTest extends TestCase
      */
     public function it_will_validate_the_fqcn()
     {
-        $search = new ModelSearch( 'False\\FQCN' );
+        $search = new ModelSearch('False\\FQCN');
     }
 }

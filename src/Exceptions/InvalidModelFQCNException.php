@@ -4,4 +4,6 @@ namespace ModelSearch\Exceptions;
 
 use RuntimeException;
 
-class InvalidModelFQCNException extends RuntimeException {}
+class InvalidModelFQCNException extends RuntimeException
+{
+}

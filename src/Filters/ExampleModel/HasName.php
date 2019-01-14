@@ -2,9 +2,8 @@
 
 namespace ModelSearch\Filters\ExampleModel;
 
-use ModelSearch\Contracts\Filter;
 use Illuminate\Database\Eloquent\Builder;
-
+use ModelSearch\Contracts\Filter;
 
 class HasName implements Filter
 {
@@ -12,11 +11,12 @@ class HasName implements Filter
      * Apply a given search value to the builder instance.
      *
      * @param Builder $builder
-     * @param string $value
+     * @param string  $value
+     *
      * @return Builder $builder
      */
     public static function apply(Builder $builder, $value)
     {
-        return $builder->where( 'name', $value );
+        return $builder->where('name', $value);
     }
 }

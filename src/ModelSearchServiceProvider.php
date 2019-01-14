@@ -12,7 +12,8 @@ class ModelSearchServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {}
+    {
+    }
 
     /**
      * Perform post-registration booting of services.
