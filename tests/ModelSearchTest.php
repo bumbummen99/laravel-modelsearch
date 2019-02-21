@@ -39,7 +39,7 @@ class ModelSearchTest extends TestCase
         ]);
 
         // Setup ModelSearch specific config values
-        $app['config']->set('modelsearch.filtersFQDN', 'ModelSearch\\Filters\\');
+        $app['config']->set('modelsearch.filtersFQCN', 'ModelSearch\\Filters\\');
         $app['config']->set('modelsearch.requestFilterPrefix', 'filter_');
     }
 
@@ -72,10 +72,10 @@ class ModelSearchTest extends TestCase
     /** @test */
     public function can_change_config_values()
     {
-        $this->app['config']->set('modelsearch.filtersFQDN', 'Changed\\FQDN\\');
+        $this->app['config']->set('modelsearch.filtersFQCN', 'Changed\\FQCN\\');
         $this->app['config']->set('modelsearch.requestFilterPrefix', 'f_');
 
-        $this->assertEquals('Changed\\FQDN\\', $this->app['config']->get('modelsearch.filtersFQDN'));
+        $this->assertEquals('Changed\\FQCN\\', $this->app['config']->get('modelsearch.filtersFQCN'));
         $this->assertEquals('f_', $this->app['config']->get('modelsearch.requestFilterPrefix'));
     }
 

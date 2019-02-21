@@ -138,6 +138,6 @@ abstract class Search
      */
     protected function getFilterFQCN(string $filterName)
     {
-        return config('modelsearch.filtersFQDN').$this->modelName.'\\'.studly_case($filterName);
+        return config('modelsearch.filtersFQCN').$this->modelName.'\\'.studly_case($filterName);
     }
 }

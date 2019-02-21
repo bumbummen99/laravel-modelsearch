@@ -23,7 +23,7 @@
 
  ```
 return [
-    'filtersFQDN' => 'App\\Filters\\',
+    'filtersFQCN' => 'App\\Filters\\',
     'requestFilterPrefix' => 'filter_'
 ];
  ```
