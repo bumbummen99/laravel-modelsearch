@@ -48,7 +48,7 @@ class ModelSearchTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 
@@ -205,10 +205,11 @@ class ModelSearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \ModelSearch\Exceptions\InvalidModelFQCNException
      */
     public function it_will_validate_the_fqcn()
     {
+        $this->expectException(\ModelSearch\Exceptions\InvalidModelFQCNException::class);
+
         $search = new ModelSearch('False\\FQCN');
     }
 }

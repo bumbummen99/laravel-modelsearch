@@ -1,6 +1,10 @@
 .vscode
 vendor
 
+# testing files #
+######################
+.phpunit.result.cache
+
 # codecov.io files #
 ######################
 coverage.xml
