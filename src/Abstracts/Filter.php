@@ -70,7 +70,7 @@ abstract class Filter implements FilterContract
      */
     public function addValue($value)
     {
-        if (!in_array($value, $this->values)) {
+        if (!$this->hasValue($value)) {
             array_push($this->values, $value);
         }
     }
@@ -86,11 +86,23 @@ abstract class Filter implements FilterContract
     public function removeValue($value)
     {
         if (($key = array_search($value, $this->values)) !== false) {
-            ($this->values[$key]);
-
+            unset($this->values[$key]);
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Remove a value from the Filter instance.
+     * Multiple values will be run in sequence.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function hasValue($value)
+    {
+        return in_array($value, $this->values);
     }
 }

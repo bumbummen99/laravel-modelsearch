@@ -189,6 +189,15 @@ class ModelSearchTest extends TestCase
         $search->addRequestFilters($request);
         $result = $search->result();
 
+        $f = $search->getFilter('has_label');
+        $f->addValue('three');
+        $this->assertEquals(true, $f->hasValue('one'));
+        $this->assertEquals(true, $f->hasValue('two'));
+        $this->assertEquals(true, $f->hasValue('three'));
+        $this->assertEquals(true, $f->removeValue('two'));
+        $this->assertEquals(false, $f->hasValue('two'));
+        $this->assertEquals(false, $f->removeValue('two'));
+
         $this->assertEquals($result->count(), 4);
         foreach ($result as $exampleModel) {
             $this->assertEquals(true, $exampleModel->label_one);

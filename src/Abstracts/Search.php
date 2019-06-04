@@ -98,6 +98,20 @@ abstract class Search
     }
 
     /**
+     * Gets the given filter instance
+     *
+     * @return null|Filter
+     */
+    public function getFilter(string $filterName)
+    {
+        if ($this->hasFilter($filterName)) {
+            return $this->filters[studly_case($filterName)];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Changes the request filter prefix.
      *
      * @return bool
