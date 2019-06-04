@@ -100,7 +100,7 @@ abstract class Search
     /**
      * Gets the given filter instance
      *
-     * @return null|Filter
+     * @return null|ModelSearch\Abstracts\Filter
      */
     public function getFilter(string $filterName)
     {
