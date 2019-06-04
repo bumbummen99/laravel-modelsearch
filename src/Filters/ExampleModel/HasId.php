@@ -3,20 +3,19 @@
 namespace ModelSearch\Filters\ExampleModel;
 
 use Illuminate\Database\Eloquent\Builder;
-use ModelSearch\Contracts\Filter;
+use ModelSearch\Abstracts\Filter;
 
-class HasId implements Filter
+class HasId extends Filter
 {
     /**
      * Apply a given search value to the builder instance.
      *
-     * @param Builder $builder
-     * @param int     $value
+     * @param mixed $value
      *
      * @return Builder $builder
      */
-    public static function apply(Builder $builder, $value)
+    public function apply($value)
     {
-        return $builder->where('id', $value);
+        return $this->builder->where('id', $value);
     }
 }

@@ -3,27 +3,26 @@
 namespace ModelSearch\Filters\ExampleModel;
 
 use Illuminate\Database\Eloquent\Builder;
-use ModelSearch\Contracts\Filter;
+use ModelSearch\Abstracts\Filter;
 
-class SortBy implements Filter
+class SortBy extends Filter
 {
     /**
      * Apply a given search value to the builder instance.
      *
-     * @param Builder $builder
-     * @param mixed   $value
+     * @param mixed $value
      *
      * @return Builder $builder
      */
-    public static function apply(Builder $builder, $sortType)
+    public function apply($value)
     {
-        switch ($sortType) {
+        switch ($value) {
             case 'id':
-                return $builder->orderBy('id');
+                return $this->builder->orderBy('id');
             case 'idDesc':
-                return $builder->orderBy('id', 'desc');
+                return $this->builder->orderBy('id', 'desc');
             default:
-                return $builder;
+                return $this->builder;
         }
     }
 }

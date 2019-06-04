@@ -25,15 +25,12 @@ abstract class Search
      */
     protected function filterPass()
     {
-        foreach ($this->filters as $filterName => $value) {
+        foreach ($this->filters as $filterName => $filter) {
             if ($filterName == 'SortBy') { //SortBy will be applied in sort pass
                 continue;
             }
 
-            $filterClass = $this->getFilterFQCN($filterName);
-            if (class_exists($filterClass)) {
-                $this->builder = $filterClass::apply($this->builder, $value);
-            }
+            $this->builder = $filter->run($this->builder);
         }
     }
 
@@ -45,10 +42,7 @@ abstract class Search
     protected function sortPass()
     {
         if ($this->hasFilter('SortBy')) {
-            $filterClass = $this->getFilterFQCN('SortBy');
-            if (class_exists($filterClass)) {
-                $this->builder = $filterClass::apply($this->builder, $this->filters['SortBy']);
-            }
+            $this->builder = $this->filters['SortBy']->run($this->builder);
         }
     }
 
@@ -78,11 +72,18 @@ abstract class Search
     /**
      * Adds the provided filter to the Search.
      *
-     * @return void
+     * @return string|bool
      */
     public function addFilter(string $filterName, $value)
     {
-        $this->filters[$filterName] = $value;
+        $fqcn = $this->getFilterFQCN($filterName);
+        if (class_exists($fqcn)) {
+            $className = studly_case($filterName);
+            $this->filters[studly_case($className)] = new $fqcn($value);
+            return $className;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -92,7 +93,7 @@ abstract class Search
      */
     public function hasFilter(string $filterName)
     {
-        return array_key_exists($filterName, $this->filters);
+        return array_key_exists(studly_case($filterName), $this->filters);
     }
 
     /**
@@ -111,7 +112,7 @@ abstract class Search
 
     /**
      * Runs every filter in the request parameters
-     * startign with the requestFilterPrefix to the Search.
+     * starting with the requestFilterPrefix to the Search.
      *
      * @return void
      */
@@ -121,12 +122,13 @@ abstract class Search
             if (substr($filterNameRaw, 0, strlen($this->requestFilterPrefix)) === $this->requestFilterPrefix) {
                 $filterName = substr($filterNameRaw, strlen($this->requestFilterPrefix));
                 if (is_array($value)) {
-                    foreach ($value as $v) {
-                        $this->addFilter($filterName, $v);
+                    $key = $this->addFilter($filterName, array_shift($value));
+                    foreach($value as $val) {
+                        $this->filters[$key]->addValue($val);
                     }
                 } else {
                     $this->addFilter($filterName, $value);
-                }
+                }   
             }
         }
     }

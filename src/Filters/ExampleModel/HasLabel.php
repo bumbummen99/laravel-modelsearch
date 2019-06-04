@@ -3,20 +3,19 @@
 namespace ModelSearch\Filters\ExampleModel;
 
 use Illuminate\Database\Eloquent\Builder;
-use ModelSearch\Contracts\Filter;
+use ModelSearch\Abstracts\Filter;
 
-class HasLabel implements Filter
+class HasLabel extends Filter
 {
     /**
      * Apply a given search value to the builder instance.
      *
-     * @param Builder $builder
-     * @param mixed   $value
+     * @param mixed $value
      *
      * @return Builder $builder
      */
-    public static function apply(Builder $builder, $value)
+    public function apply($value)
     {
-        return $builder->where('label_'.$value, true);
+        return $this->builder->where('label_'.$value, true);
     }
 }
