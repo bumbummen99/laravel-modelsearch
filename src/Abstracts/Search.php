@@ -80,6 +80,7 @@ abstract class Search
         if (class_exists($fqcn)) {
             $className = studly_case($filterName);
             $this->filters[studly_case($className)] = new $fqcn($value);
+
             return $className;
         } else {
             return false;
@@ -123,12 +124,12 @@ abstract class Search
                 $filterName = substr($filterNameRaw, strlen($this->requestFilterPrefix));
                 if (is_array($value)) {
                     $key = $this->addFilter($filterName, array_shift($value));
-                    foreach($value as $val) {
+                    foreach ($value as $val) {
                         $this->filters[$key]->addValue($val);
                     }
                 } else {
                     $this->addFilter($filterName, $value);
-                }   
+                }
             }
         }
     }

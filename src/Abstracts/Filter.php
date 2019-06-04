@@ -2,31 +2,32 @@
 
 namespace ModelSearch\Abstracts;
 
-use ModelSearch\Contracts\Filter as FilterContract;
 use Illuminate\Database\Eloquent\Builder;
+use ModelSearch\Contracts\Filter as FilterContract;
 
 abstract class Filter implements FilterContract
 {
     /**
      * Contains the values for the Filter instance.
-     * 
+     *
      * @var array
      */
     private $values = [];
 
     /**
      * Contains the builder instance for the current run.
-     * 
+     *
      * @var array
      */
     protected $builder;
 
     /**
-     * Create a new Filter instance
-     * 
+     * Create a new Filter instance.
+     *
      * @param mixed $value
      */
-    public function __construct($value) {
+    public function __construct($value)
+    {
         array_push($this->values, $value);
     }
 
@@ -34,11 +35,12 @@ abstract class Filter implements FilterContract
      * Apply a given search value to the Builder instance.
      *
      * @param Illuminate\Database\Eloquent\Builder $builder
-     * @param mixed $value
+     * @param mixed                                $value
      *
      * @return Illuminate\Database\Eloquent\Builder $builder
      */
-    public function run(Builder $builder) {
+    public function run(Builder $builder)
+    {
         $this->builder = $builder;
 
         foreach ($this->values as $value) {
@@ -52,21 +54,22 @@ abstract class Filter implements FilterContract
      * Apply a given search value to the Builder instance.
      *
      * @param Illuminate\Database\Eloquent\Builder $builder
-     * @param mixed $value
+     * @param mixed                                $value
      *
      * @return Illuminate\Database\Eloquent\Builder $builder
      */
-    public abstract function apply($value);
+    abstract public function apply($value);
 
     /**
      * Add a value to the Filter instance.
      * Multiple values will be run in sequence.
      *
      * @param mixed $value
-     * 
+     *
      * @return void
      */
-    public function addValue($value) {
+    public function addValue($value)
+    {
         if (in_array($value, $this->values)) {
             array_push($this->values, $value);
         }
@@ -77,12 +80,14 @@ abstract class Filter implements FilterContract
      * Multiple values will be run in sequence.
      *
      * @param mixed $value
-     * 
+     *
      * @return bool
      */
-    public function removeValue($value) {
+    public function removeValue($value)
+    {
         if (($key = array_search($value, $this->values)) !== false) {
             ($this->values[$key]);
+
             return true;
         } else {
             return false;

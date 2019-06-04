@@ -5,7 +5,7 @@ namespace ModelSearch\Contracts;
 use Illuminate\Database\Eloquent\Builder;
 
 interface Filter
-{   
+{
     /**
      * Run the Filter instance on the Builder instance.
      *
@@ -29,7 +29,7 @@ interface Filter
      * Multiple values will be run in sequence.
      *
      * @param mixed $value
-     * 
+     *
      * @return void
      */
     public function addValue($value);
@@ -39,7 +39,7 @@ interface Filter
      * Multiple values will be run in sequence.
      *
      * @param mixed $value
-     * 
+     *
      * @return bool
      */
     public function removeValue($value);
