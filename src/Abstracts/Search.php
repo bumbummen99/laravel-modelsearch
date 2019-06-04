@@ -98,7 +98,7 @@ abstract class Search
     }
 
     /**
-     * Gets the given filter instance
+     * Gets the given filter instance.
      *
      * @return null|ModelSearch\Abstracts\Filter
      */
@@ -107,7 +107,7 @@ abstract class Search
         if ($this->hasFilter($filterName)) {
             return $this->filters[studly_case($filterName)];
         } else {
-            return null;
+            return;
         }
     }
 

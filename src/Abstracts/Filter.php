@@ -87,6 +87,7 @@ abstract class Filter implements FilterContract
     {
         if (($key = array_search($value, $this->values)) !== false) {
             unset($this->values[$key]);
+
             return true;
         } else {
             return false;
