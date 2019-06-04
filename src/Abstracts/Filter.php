@@ -70,7 +70,7 @@ abstract class Filter implements FilterContract
      */
     public function addValue($value)
     {
-        if (in_array($value, $this->values)) {
+        if (!in_array($value, $this->values)) {
             array_push($this->values, $value);
         }
     }

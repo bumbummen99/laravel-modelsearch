@@ -66,6 +66,12 @@ class ModelSearchTest extends TestCase
         $exampleModel->label_two = true;
         $exampleModel->save();
 
+        $exampleModel = new ExampleModel();
+        $exampleModel->name = 'Labels';
+        $exampleModel->label_one = true;
+        $exampleModel->label_two = false;
+        $exampleModel->save();
+
         foreach (range(1, 4) as $index) {
             $exampleModel = new ExampleModel();
             $exampleModel->name = 'Labels';
@@ -119,7 +125,7 @@ class ModelSearchTest extends TestCase
         $search->addFilter('SortBy', 'idDesc');
         $result = $search->result();
 
-        $predictedIndex = 15;
+        $predictedIndex = 16;
         foreach ($result as $exampleModel) {
             $this->assertEquals($exampleModel->id, $predictedIndex);
             $predictedIndex--; //decrease index
