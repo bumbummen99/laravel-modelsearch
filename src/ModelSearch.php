@@ -44,4 +44,19 @@ class ModelSearch extends Search
 
         return $this->builder->get();
     }
+
+    /**
+     * Runs every filter in the array on the Collection.
+     *
+     * @return string SQL Query for the current filter set
+     */
+    public function sql()
+    {
+        $this->builder = $this->modelFQCN::query();
+        
+        $this->filterPass();
+        $this->sortPass();
+
+        return $this->builder->toSql();
+    }
 }

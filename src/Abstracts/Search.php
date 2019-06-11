@@ -58,6 +58,13 @@ abstract class Search
     abstract public function result();
 
     /**
+     * Returns the SQL Query for the current filter set.
+     *
+     * @return string sql
+     */
+    abstract public function sql();
+
+    /**
      * Adds every filter in the array to the Search.
      *
      * @return void

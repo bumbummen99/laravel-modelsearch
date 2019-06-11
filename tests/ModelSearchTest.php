@@ -233,4 +233,17 @@ class ModelSearchTest extends TestCase
 
         $search = new ModelSearch('False\\FQCN');
     }
+
+    /**
+     * @test
+     */
+    public function it_can_return_the_raw_sql_query()
+    {
+        $search = new ModelSearch(ExampleModel::class);
+        $search->addFilters([
+            'HasName' => 'Test',
+            'SortBy'  => 'idDesc',
+        ]);
+        $this->assertEquals('select * from "examplemodel" where "name" = ? order by "id" desc', $search->sql());
+    }
 }
