@@ -1,7 +1,7 @@
 {
     "name": "skyraptor/modelsearch",
     "license": "MIT",
-    "keywords": ["modelsearch", "search", "query"],
+    "keywords": ["laravel", "modelsearch", "search", "query"],
     "authors": [
         {
             "name": "Patrick Henninger",
