@@ -7,11 +7,11 @@
 [![Latest Unstable Version](https://poser.pugx.org/skyraptor/modelsearch/v/unstable)](https://packagist.org/packages/skyraptor/modelsearch)
 [![License](https://poser.pugx.org/skyraptor/modelsearch/license)](https://packagist.org/packages/skyraptor/modelsearch)
 [![Homepage](https://img.shields.io/badge/homepage-skyraptor.eu-informational.svg?style=flat&logo=appveyor)](https://skyraptor.eu)
-
- Laravel ModelSearch is a lightweight, easy to use package to create dynamic search queries for specific Models with Laravel or Illuminate 5.8.
+ 
+ Laravel Model Search یک پکیج سبک و با کاربرد آسان است تا بتوانید پرس و جوهای جستجوی پویا را برای مدلهای خاص با Laravel یا Illuminate 5.8 ایجاد کنید.
 
  # ابزار های وابسته
- - Laravel 5.7+
+ - لاراول 5.7+
 
  # نصب کردن
  ## کامپوزر
@@ -20,7 +20,7 @@
 
 ## تنظیم و کانفیگ
 
- This package includes its own configuration file which you should publish by with the command ```php artisan vendor:publish``` and following the instuctions on screenafterwards. In the configuration file you have to adjust the namespace for you filters directory and your request filter prefix.
+این بسته شامل پرونده پیکربندی خود می باشد که شما باید با دستور ```php artisan vendor:publish``` و دنبال کردن نمونه های موجود در screenafterward. در فایل پیکربندی باید فضای نام را برای فهرست فیلترها و پیشوند فیلتر درخواست خود تنظیم کنید.
 
  ```
 return [
@@ -65,9 +65,10 @@ class HasId implements Filter
 
 
 ## درخواست فیلتر
- The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
 
- Always remember to apply filters in the appropiate order.
+The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
+
+همیشه به یاد داشته باشید که فیلترها را به ترتیب مناسب اعمال کنید.
  ```php
  $search = new ModelSearch( User::class );
  $search->addRequestFilters( $request );
