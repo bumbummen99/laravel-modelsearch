@@ -107,7 +107,7 @@ class HasId implements Filter
 
 <div dir="rtl" style="direction:rtl;text-align:right;">
 <p dir="rtl">
-می توانید پیشوند فیلتر جستجو را با فراخوانی متد  ```setRequestFilterPrefix ()```تغییر دهید و یک پیشوند جدید ارائه دهید.
+می توانید پیشوند فیلتر جستجو را با فراخوانی متد  `setRequestFilterPrefix()`تغییر دهید و یک پیشوند جدید ارائه دهید.
 </p>
 <h2>مثال ها</h2>
 
