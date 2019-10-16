@@ -16,7 +16,10 @@
  # نصب کردن
  ## کامپوزر
 
- Simply run ```composer require skyraptor/modelsearch``` to install the package in its latest version, after that run ```composer update```. The package will register its own ServiceProvider using Laravels package discovery.
+دستور کامپوزر  ```composer require skyraptor/modelsearch``` را برای نصب ساده اجرا کنید تا آخرین نسخه موجود نصب شود و سپس برای بروزرسانی دستور زیر را اجرا کنید.
+```composer update```
+
+این بسته با استفاده از ServiceProvider بسته Laravels ، ServiceProvider خود را ثبت می کند.
 
 ## تنظیم و کانفیگ
 
