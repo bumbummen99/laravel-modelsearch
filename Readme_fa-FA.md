@@ -28,8 +28,9 @@
  <h2> کامپوزر</h2>
 
 <p>
-دستور کامپوزر  ```composer require skyraptor/modelsearch``` را برای نصب ساده اجرا کنید تا آخرین نسخه موجود نصب شود و سپس برای بروزرسانی دستور زیر را اجرا کنید.
-```composer update```
+دستور کامپوزر  `composer require skyraptor/modelsearch` را برای نصب ساده اجرا کنید تا آخرین نسخه موجود نصب شود و سپس برای بروزرسانی دستور زیر را اجرا کنید.
+ 
+`composer update`
 
 این بسته با استفاده از ServiceProvider بسته Laravels ، ServiceProvider خود را ثبت می کند.
 </p>
@@ -37,10 +38,11 @@
 <div dir="rtl" style="direction:rtl;text-align:right;">
 <h2>تنظیم و کانفیگ</h2>
 <p>
-این بسته شامل پرونده پیکربندی خود می باشد که شما باید با دستور ```php artisan vendor:publish``` و دنبال کردن نمونه های موجود در screenafterward. در فایل پیکربندی باید فضای نام را برای فهرست فیلترها و پیشوند فیلتر درخواست خود تنظیم کنید.
+این بسته شامل پرونده پیکربندی خود می باشد که شما باید با دستور `php artisan vendor:publish` و دنبال کردن نمونه های موجود در screenafterward. در فایل پیکربندی باید فضای نام را برای فهرست فیلترها و پیشوند فیلتر درخواست خود تنظیم کنید.
  </p>
  </div>
- ```
+
+```
 return [
     'filtersFQCN' => 'App\\Filters\\',
     'requestFilterPrefix' => 'filter_'
@@ -54,12 +56,15 @@ return [
 
 مثلا:
 
+
+فیلتر شما باید مدل ModelSearch \ Contracts \ Filter را گسترش دهد.
+
 </p>
 </div>
- ```path\to\laravel\app\Filters\User\HasId.php```
- Your filter has to extend ModelSearch\Contracts\Filter.
 
- ```php
+`path\to\laravel\app\Filters\User\HasId.php` 
+
+```php
  <?php
 
 namespace App\Filters\User;
@@ -88,7 +93,7 @@ class HasId implements Filter
 <h2>درخواست فیلتر</h2>
 
 <p>
-The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
+The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the `addRequestFilters` method and providing a Request instance.
 
 همیشه به یاد داشته باشید که فیلترها را به ترتیب مناسب اعمال کنید.
 </p>
