@@ -1,6 +1,6 @@
-<p dir="rtl">
-# جستجوی مدل لاراول
-</p>
+<div dir="rtl" style="direction:rtl;text-align:right;">
+
+<h1>جستجوی مدل لاراول</h1>
 [![Build Status](https://travis-ci.org/bumbummen99/laravel-modelsearch.png?branch=master)](https://travis-ci.org/bumbummen99/laravel-modelsearch)
 [![codecov](https://codecov.io/gh/bumbummen99/laravel-modelsearch/branch/master/graph/badge.svg)](https://codecov.io/gh/bumbummen99/laravel-modelsearch)
 [![StyleCI](https://styleci.io/repos/159666547/shield?branch=master)](https://styleci.io/repos/159666547)
@@ -10,24 +10,26 @@
 [![License](https://poser.pugx.org/skyraptor/modelsearch/license)](https://packagist.org/packages/skyraptor/modelsearch)
 [![Homepage](https://img.shields.io/badge/homepage-skyraptor.eu-informational.svg?style=flat&logo=appveyor)](https://skyraptor.eu)
 
-<p dir="rtl">
+<p>
  Laravel Model Search یک پکیج سبک و با کاربرد آسان است تا بتوانید پرس و جوهای جستجوی پویا را برای مدلهای خاص با Laravel یا Illuminate 5.8 ایجاد کنید.
 </p>
-<p dir="rtl">
-# ابزار های وابسته
- - لاراول 5.7+
+</div>
+<div dir="rtl" style="direction:rtl;text-align:right;">
+ <h1>ابزار های وابسته</h1>
 
-</p>
-<p dir="rtl">
- # نصب کردن
- ## کامپوزر
+- لاراول 5.7+
+
+</div>
+<div dir="rtl" style="direction:rtl;text-align:right;">
+ <h1> نصب کردن</h1>
+ <h2> کامپوزر</h2>
 
 دستور کامپوزر  ```composer require skyraptor/modelsearch``` را برای نصب ساده اجرا کنید تا آخرین نسخه موجود نصب شود و سپس برای بروزرسانی دستور زیر را اجرا کنید.
 ```composer update```
 
 این بسته با استفاده از ServiceProvider بسته Laravels ، ServiceProvider خود را ثبت می کند.
 
-## تنظیم و کانفیگ
+<h2>تنظیم و کانفیگ</h2>
 
 این بسته شامل پرونده پیکربندی خود می باشد که شما باید با دستور ```php artisan vendor:publish``` و دنبال کردن نمونه های موجود در screenafterward. در فایل پیکربندی باید فضای نام را برای فهرست فیلترها و پیشوند فیلتر درخواست خود تنظیم کنید.
 
@@ -38,7 +40,7 @@ return [
 ];
  ```
 
-## فیلتر ها
+<h2>فیلتر ها</h2>
 
 برای تعریف یک فیلتر ، باید پوشه ای را ایجاد کنید که به عنوان مدل خود در فهرست پوشه فیلترهای شما قرار گیرد. در این پوشه می توانید پوشه مخصوص مدل را ایجاد کنید. مثلا:
 
@@ -72,8 +74,7 @@ class HasId implements Filter
 }
  ```
 
-
-## درخواست فیلتر
+<h2>درخواست فیلتر</h2>
 
 The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
 
@@ -86,7 +87,7 @@ The request filter prefix  in the configuration defines the prefix being used fo
 
 می توانید پیشوند فیلتر جستجو را با فراخوانی متد  ```setRequestFilterPrefix ()```تغییر دهید و یک پیشوند جدید ارائه دهید.
 
-## مثال ها
+<h2>مثال ها</h2>
 
 مثال زیر نحوه استفاده از جستجو در Controller را به شما نشان می دهد:
 
@@ -112,4 +113,4 @@ public function someController( Request $request ) {
     ...
 }
 ```
-</p>
+</div>
