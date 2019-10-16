@@ -93,8 +93,6 @@ class HasId implements Filter
 <h2>درخواست فیلتر</h2>
 
 <p>
-The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the `addRequestFilters` method and providing a Request instance.
-
 درخواست پیشوند فیلتر در پیکربندی پیشوند مورد استفاده برای نام فیلترها را در پارامترهای درخواست تعریف می کند. این می تواند مورد استفاده قرار گیرد تا به کاربر اجازه دهد فیلترهای درخواست POST و GET را اعمال کند. این کار باید با فراخوانی روش 'addRequestFilters' و ارائه نمونه درخواست (Request) انجام شود.
 
 همیشه به یاد داشته باشید که فیلترها را به ترتیب مناسب اعمال کنید.
