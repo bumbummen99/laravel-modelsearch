@@ -22,7 +22,7 @@
 
  This package includes its own configuration file which you should publish by with the command ```php artisan vendor:publish``` and following the instuctions on screenafterwards. In the configuration file you have to adjust the namespace for you filters directory and your request filter prefix.
 
- ```
+ ```php
 return [
     'filtersFQCN' => 'App\\Filters\\',
     'requestFilterPrefix' => 'filter_'
@@ -36,7 +36,7 @@ return [
  ```path\to\laravel\app\Filters\User\HasId.php```
  Your filter has to extend ModelSearch\Contracts\Filter.
 
- ```
+ ```php
  <?php
 
 namespace App\Filters\User;
@@ -66,7 +66,7 @@ class HasId implements Filter
  The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
 
  Always remember to apply filters in the appropiate order.
- ```
+ ```php
  $search = new ModelSearch( User::class );
  $search->addRequestFilters( $request );
  $result = $search->result();
@@ -78,7 +78,7 @@ You can change the filter prefix of the Search after by calling the ```setReques
 
 The following example shows you how to use the Search in your Controller:
 
-```
+```php
 namespace ModelSearch\ModelSearch;
 
 
