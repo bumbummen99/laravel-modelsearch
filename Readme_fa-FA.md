@@ -1,4 +1,5 @@
-# Laravel ModelSearch
+<p dir="rtl">
+# جستجوی مدل لاراول
 [![Build Status](https://travis-ci.org/bumbummen99/laravel-modelsearch.png?branch=master)](https://travis-ci.org/bumbummen99/laravel-modelsearch)
 [![codecov](https://codecov.io/gh/bumbummen99/laravel-modelsearch/branch/master/graph/badge.svg)](https://codecov.io/gh/bumbummen99/laravel-modelsearch)
 [![StyleCI](https://styleci.io/repos/159666547/shield?branch=master)](https://styleci.io/repos/159666547)
@@ -10,9 +11,13 @@
  
  Laravel Model Search یک پکیج سبک و با کاربرد آسان است تا بتوانید پرس و جوهای جستجوی پویا را برای مدلهای خاص با Laravel یا Illuminate 5.8 ایجاد کنید.
 
- # ابزار های وابسته
+</p>
+<p dir="rtl">
+# ابزار های وابسته
  - لاراول 5.7+
 
+</p>
+<p dir="rtl">
  # نصب کردن
  ## کامپوزر
 
@@ -106,3 +111,4 @@ public function someController( Request $request ) {
     ...
 }
 ```
+</p>
