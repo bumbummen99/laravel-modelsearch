@@ -1,26 +1,26 @@
 # Laravel ModelSearch
-[![Build Status](https://travis-ci.org/bumbummen99/laravel-modelsearch.png?branch=master)](https://travis-ci.org/bumbummen99/laravel-modelsearch)
+[![Status construit](https://travis-ci.org/bumbummen99/laravel-modelsearch.png?branch=master)](https://travis-ci.org/bumbummen99/laravel-modelsearch)
 [![codecov](https://codecov.io/gh/bumbummen99/laravel-modelsearch/branch/master/graph/badge.svg)](https://codecov.io/gh/bumbummen99/laravel-modelsearch)
 [![StyleCI](https://styleci.io/repos/159666547/shield?branch=master)](https://styleci.io/repos/159666547)
-[![Total Downloads](https://poser.pugx.org/skyraptor/modelsearch/downloads.png)](https://packagist.org/packages/skyraptor/modelsearch)
-[![Latest Stable Version](https://poser.pugx.org/skyraptor/modelsearch/v/stable)](https://packagist.org/packages/skyraptor/modelsearch)
-[![Latest Unstable Version](https://poser.pugx.org/skyraptor/modelsearch/v/unstable)](https://packagist.org/packages/skyraptor/modelsearch)
+[![Total téléchargé](https://poser.pugx.org/skyraptor/modelsearch/downloads.png)](https://packagist.org/packages/skyraptor/modelsearch)
+[![Derniere Version Stable](https://poser.pugx.org/skyraptor/modelsearch/v/stable)](https://packagist.org/packages/skyraptor/modelsearch)
+[![Derniere Version Instable](https://poser.pugx.org/skyraptor/modelsearch/v/unstable)](https://packagist.org/packages/skyraptor/modelsearch)
 [![License](https://poser.pugx.org/skyraptor/modelsearch/license)](https://packagist.org/packages/skyraptor/modelsearch)
-[![Homepage](https://img.shields.io/badge/homepage-skyraptor.eu-informational.svg?style=flat&logo=appveyor)](https://skyraptor.eu)
+[![Page d'Accueil](https://img.shields.io/badge/homepage-skyraptor.eu-informational.svg?style=flat&logo=appveyor)](https://skyraptor.eu)
 
- Laravel ModelSearch is a lightweight, easy to use package to create dynamic search queries for specific Models with Laravel or Illuminate 5.8.
-
- # Requirements
+ Laravel ModelSearch est légé, et possède des paquet facile à utiliser, pour créer des requetes dynamique de recherches pour des modèles spécifique avec LAravel or Illuminate
+ 5.8. 
+ # Prérequis
  - Laravel 5.7+
 
  # Installation
  ## Composer
 
- Simply run ```composer require skyraptor/modelsearch``` to install the package in its latest version, after that run ```composer update```. The package will register its own ServiceProvider using Laravels package discovery.
+ Lancement facile ```composer require skyraptor/modelsearch``` pour installer le paquet dans sa dernière version, apères cela lancer```composer update```. Le package enregistrera son propre fournisseur de services à l'aide du gestionnaire de paquet Laravels.
 
 ## Configuration
 
- This package includes its own configuration file which you should publish by with the command ```php artisan vendor:publish``` and following the instuctions on screenafterwards. In the configuration file you have to adjust the namespace for you filters directory and your request filter prefix.
+ Ce paquet inclut son propre fichier de configuration que vous devez publier avec la commande ```php artisan vendor:publish``` et en suivant les instructions à l’écran. Dans le fichier de configuration, vous devez ajuster l'espace de noms pour votre répertoire de filtres et votre préfixe de filtre de requête votre requête..
 
  ```
 return [
@@ -29,12 +29,12 @@ return [
 ];
  ```
 
-## Filters
+## Filtres
 
- In order to define a filter you have to create a folder that is named as your model within your filters directory. Within this folder you can create filder specific to the model.
- For example:   
+Afin de définir un filtre, vous devez créer un dossier basé sur le modèle de votre filtre dans votre repertoire. Dans ce dossier, vous pouvez créer un fichier spécifique au modèle.
+ Par exemple:   
  ```path\to\laravel\app\Filters\User\HasId.php```
- Your filter has to extend ModelSearch\Contracts\Filter.
+ Votre filtre doit se baser sur ModelSearch\Contracts\Filter.
 
  ```
  <?php
@@ -62,21 +62,21 @@ class HasId implements Filter
  ```
 
 
-## Request Filters
- The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
+## Filtre De Demande
+ Le préfixe de filtre de demande dans la configuration définit le préfixe utilisé pour les noms de filtre dans les paramètres de demande. Ceci peut être utilisé pour permettre à l'utilisateur d'appliquer des filtres via des requêtes POST et GET. Ceci doit être fait manuellement en appelant le ```addRequestFilters``` méthode et fournissant une instance de demande.
 
- Always remember to apply filters in the appropiate order.
+ Rappelez-vous toujours d'appliquer les filtres dans l'ordre approprié.
  ```
  $search = new ModelSearch( User::class );
  $search->addRequestFilters( $request );
  $result = $search->result();
  ```
 
-You can change the filter prefix of the Search after by calling the ```setRequestFilterPrefix()``` method, providing a new preifx.
+Vous pouvez modifier le préfixe de filtre de Search après en appelant la méthode `` `setRequestFilterPrefix ()` ``, en fournissant un nouveau préfixe.
 
 ## Examples
 
-The following example shows you how to use the Search in your Controller:
+L'exemple suivant vous montre comment utiliser la recherche dans votre contrôleur:
 
 ```
 namespace ModelSearch\ModelSearch;
