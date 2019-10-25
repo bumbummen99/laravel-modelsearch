@@ -31,7 +31,7 @@ return [
 
 ## Filters
 
- In order to define a filter you have to create a folder that is named as your model within your filters directory. Within this folder you can create filder specific to the model.
+ In order to define a filter you have to create a folder that is named as your model within your filters directory. Within this folder you can create filter specific to the model.
  For example:   
  ```path\to\laravel\app\Filters\User\HasId.php```
  Your filter has to extend ModelSearch\Contracts\Filter.
