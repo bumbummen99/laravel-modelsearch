@@ -8,19 +8,19 @@
 [![License](https://poser.pugx.org/skyraptor/modelsearch/license)](https://packagist.org/packages/skyraptor/modelsearch)
 [![Homepage](https://img.shields.io/badge/homepage-skyraptor.eu-informational.svg?style=flat&logo=appveyor)](https://skyraptor.eu)
 
- Laravel ModelSearch is a lightweight, easy to use package to create dynamic search queries for specific Models with Laravel or Illuminate 5.8.
+ Laravel ModelSearch ist eine leichtgewichtige, einfach zu benutzende Bibliothek, die dynamische Queries, zur Suche von spezifischen Modellen, in Laravel oder Illuminate 5.8 zur Verfügung stellt.
 
- # Requirements
+ # Vorraussetzungen
  - Laravel 5.7+
 
  # Installation
  ## Composer
 
- Simply run ```composer require skyraptor/modelsearch``` to install the package in its latest version, after that run ```composer update```. The package will register its own ServiceProvider using Laravels package discovery.
+ Führe ```composer require skyraptor/modelsearch``` aus, um die Bibliothek in der neuesten Version zu installieren. Führe anschließend ```composer update``` aus. Die Bibliothek registitriert mithilfe der Laravel Bibliotheks Erkennung, seinen eigenen ServiceProvider.
 
-## Configuration
+## Konfiguration
 
- This package includes its own configuration file which you should publish by with the command ```php artisan vendor:publish``` and following the instuctions on screenafterwards. In the configuration file you have to adjust the namespace for you filters directory and your request filter prefix.
+ Die Bibliothek enthält eine eigene Konfigurations-Datei, welche mit dem Befehl ```php artisan vendor:publish``` und dem Ausführen der darauffolgenden, auf dem Bildschirm angezeigten Instruktionen, veröffentlicht wird. Um den namespace für deine filter Ordner und den Prefix für deine Request filter anzupassen, musst du die Konfigurationsdatei anpassen.
 
  ```
 return [
@@ -29,12 +29,12 @@ return [
 ];
  ```
 
-## Filters
+## Filter
 
- In order to define a filter you have to create a folder that is named as your model within your filters directory. Within this folder you can create filder specific to the model.
- For example:   
+ Um einen Filter zu definieren, erstelle einen neuen Ordner im Filter Ordner, der den gleichen Namen, wie dein Model besitzt. In diesem Ordner kannst du spezifische Filter für dein Model erstellen.
+ Zum Beispiel:   
  ```path\to\laravel\app\Filters\User\HasId.php```
- Your filter has to extend ModelSearch\Contracts\Filter.
+ Dein Filter muss ModelSearch\Contracts\Filter erweitern. 
 
  ```
  <?php
@@ -62,21 +62,21 @@ class HasId implements Filter
  ```
 
 
-## Request Filters
- The request filter prefix  in the configuration defines the prefix being used for filter names in the request parameters. This can be used to allow the user to apply filters trought POST and GET requests. This has to be done manually by calling the ```addRequestFilters``` method and providing a Request instance.
+## Request Filter
+ Der request filter prefix in der Konfiguration, definiert den Prefix, welcher für die Filternamen in den Request Parametern benutzt wird. So kann man Filter durch POST und GET Requests anwenden. Dies muss manuell erledigt werden, indem die Methode ```addRequestFilters``` mit einer Request-Instanz aufgerufen wird.
 
- Always remember to apply filters in the appropiate order.
+Vergiss nicht, die Filter in der richtigen Reihenfolge anzuwenden
  ```
  $search = new ModelSearch( User::class );
  $search->addRequestFilters( $request );
  $result = $search->result();
  ```
 
-You can change the filter prefix of the Search after by calling the ```setRequestFilterPrefix()``` method, providing a new preifx.
+Der Filterprefix der Suche wird geändert, indem die Methode ```setRequestFilterPrefix()``` mit einem neuen Prefix aufgerufen wird.
 
-## Examples
+## Beispiele
 
-The following example shows you how to use the Search in your Controller:
+Die folgenden Beispiele zeigen, wie die Suche im Controller verwendet wird:
 
 ```
 namespace ModelSearch\ModelSearch;
