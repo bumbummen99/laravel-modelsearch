@@ -1,5 +1,13 @@
+
+# IDE #
+######################
 .vscode
+
+
+# Composer #
+######################
 vendor
+composer.lock
 
 # testing files #
 ######################
