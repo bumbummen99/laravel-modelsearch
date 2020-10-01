@@ -48,7 +48,7 @@ class ModelSearchTest extends TestCase
      *
      * @return void
      */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -139,7 +139,7 @@ class ModelSearchTest extends TestCase
         $search->addFilters([
             'HasName' => 'Test',
             'SortBy'  => 'idDesc',
-            ]);
+        ]);
         $result = $search->result();
 
         $this->assertEquals($result->count(), 10);
