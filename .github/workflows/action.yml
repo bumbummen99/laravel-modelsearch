@@ -19,10 +19,6 @@ jobs:
       run: composer install --prefer-source --no-interaction
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit --coverage-clover=coverage.xml
-  push-to-codecov:
-    needs: laravel-tests
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Push to codecov
-      run: bash <(curl -s https://codecov.io/bash)
+    - uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml
